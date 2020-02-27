@@ -8,7 +8,7 @@ void exe_stack2(int start, int end) {
         stack2[i].func(&stack2[i], &i);
     }
 }
-int op_count = 0, highest_saved_locals_count = 0, highest_saved_locals_count = 0, highest_blocks_count = 0, highest_label_stack_ptr = 0;
+int op_count = 0, highest_saved_locals_count = 0, highest_blocks_count = 0, highest_label_stack_ptr = 0;
 void DebugPrint(const char* format, ...) {
 #ifdef _DEBUG
     va_list argptr;
@@ -21,17 +21,17 @@ void DebugPrint(const char* format, ...) {
     debug_printf("]\n");
 #endif
 }
-int PushLocal() {
+inline int PushLocal() {
     //highest_stack_count = min(cur_label->stack_ptr, highest_stack_count);
     return (int)cur_label->stack_ptr++;
 }
-uint64_t PopStack() {
+inline uint64_t PopStack() {
     return cur_label->stack[--cur_label->stack_ptr];
 }
-int PopLocal() {
+inline int PopLocal() {
     return (int)cur_label->stack_ptr++;
 }
-void PushStack(uint64_t v) {
+inline void PushStack(uint64_t v) {
     //highest_stack_count = min(cur_label->stack_ptr, highest_stack_count);
     cur_label->stack[cur_label->stack_ptr++] = v;
 }
